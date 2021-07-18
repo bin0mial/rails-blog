@@ -3,12 +3,12 @@ require 'rails_helper'
 RSpec.describe Category, type: :model do
   context 'before publication' do
     it 'validates uniqueness of name' do
-      Category.create! :name => 'test'
-      expect { Category.create! :name => 'test' }.to raise_error(ActiveRecord::RecordInvalid)
+      expect {Category.create! :name => 'test'}.not_to raise_error
+      expect { Category.create! :name => 'test' }.to raise_error ActiveRecord::RecordInvalid
     end
 
     it 'validates the presence of name' do
-      expect { Category.create! :name => '' }.to raise_error(ActiveRecord::RecordInvalid)
+      expect { Category.create! :name => '' }.to raise_error ActiveRecord::RecordInvalid
     end
 
     describe "before_save callback" do
