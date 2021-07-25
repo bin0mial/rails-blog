@@ -31,3 +31,11 @@
 
 en:
   hello: "Hello world"
+  faker:
+    name:
+      category:
+        - Computers
+        - Devices
+        - Games
+        - Coding
+        - Developing
