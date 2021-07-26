@@ -1,0 +1,36 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Creator:</strong>
+  <%= @post.creator.email %>
+</p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @post.title %>
+</p>
+
+<p>
+  <strong>Body:</strong>
+  <%= @post.body %>
+</p>
+
+<p>
+  <strong>Category:</strong>
+  <%= @post.category.name %>
+</p>
+
+<% if @post.attachments.attached? %>
+  <div>
+    <strong>Attachments:</strong>
+    <ul>
+      <% @post.attachments.each do |attachment| %>
+        <li><%= link_to attachment.filename, attachment %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+
+
+<%= link_to 'Edit', edit_post_path(@post) %> |
+<%= link_to 'Back', posts_path %>

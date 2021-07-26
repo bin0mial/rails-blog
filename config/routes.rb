@@ -1,4 +1,9 @@
 Rails.application.routes.draw do
+
+  root "posts#index"
+
+  resources :posts
+
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
   devise_for :users
