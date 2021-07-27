@@ -4,25 +4,27 @@ class PostsController < ApplicationController
 
   # GET /posts or /posts.json
   def index
-    @posts = Post.includes(:creator, :category).all
+    @posts = authorize Post.includes(:creator, :category).all
   end
 
   # GET /posts/1 or /posts/1.json
   def show
+    authorize @post
   end
 
   # GET /posts/new
   def new
-    @post = Post.new
+    @post = authorize Post.new
   end
 
   # GET /posts/1/edit
   def edit
+    authorize @post
   end
 
   # POST /posts or /posts.json
   def create
-    @post = current_user.posts.new(post_params)
+    @post = authorize current_user.posts.new(post_params)
 
     respond_to do |format|
       if @post.save
@@ -38,7 +40,7 @@ class PostsController < ApplicationController
   # PATCH/PUT /posts/1 or /posts/1.json
   def update
     respond_to do |format|
-      if @post.update(post_params)
+      if authorize(@post).update(post_params)
         format.html { redirect_to @post, notice: "Post was successfully updated." }
         format.json { render :show, status: :ok, location: @post }
       else
@@ -50,7 +52,7 @@ class PostsController < ApplicationController
 
   # DELETE /posts/1 or /posts/1.json
   def destroy
-    @post.destroy
+    authorize(@post).destroy
     respond_to do |format|
       format.html { redirect_to posts_url, notice: "Post was successfully destroyed." }
       format.json { head :no_content }
