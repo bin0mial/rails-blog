@@ -1,5 +1,5 @@
 FactoryBot.define do
   factory :category do
-    name { Faker::Name.unique.category }
+    sequence(:name) { |n| "Category #{n}" }
   end
 end
