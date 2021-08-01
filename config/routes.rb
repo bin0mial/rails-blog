@@ -2,6 +2,12 @@ Rails.application.routes.draw do
 
   root "posts#index"
 
+  namespace :api do
+    namespace :v1 do
+      resources :posts, only: %w[ index show]
+    end
+  end
+
   resources :posts
 
   devise_for :admin_users, ActiveAdmin::Devise.config

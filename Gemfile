@@ -31,6 +31,7 @@ gem 'bootsnap', '>= 1.4.4', require: false
 gem 'devise', '4.8.0'
 gem 'activeadmin', '2.9.0'
 gem 'pundit', '2.1.0'
+gem 'blueprinter', '0.25.3'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
